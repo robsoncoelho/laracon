@@ -45,15 +45,14 @@ body {
   font-weight: 600;
   cursor: pointer;
   gap: 12px;
-  background:  #171717;
+  background: #171717;
   overflow: hidden;
-
+  transition: background 0.3s ease;
 }
 
 .card {
   opacity: 0;
   animation: fadeIn 0.3s ease-out forwards;
-  transition: background 0.3s ease;
 
   p {
     padding-left: 24px;
@@ -79,6 +78,7 @@ body {
     0px 83px 50px 0px #00000063,
     0px 148px 59px 0px #0000001C,
     0px 231px 65px 0px #00000003;
+
 
   .selected {
     align-items: center;

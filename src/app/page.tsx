@@ -1,9 +1,9 @@
-import Dropdown from "@/components/Dropdown";
+import Select from "@/components/select";
 
 export default function Home() {
   return (
     <div className="container">
-      <Dropdown
+      <Select
         options={[
           "Denver, USA",
           "Brisbane, Australia",
