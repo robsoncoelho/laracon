@@ -1,26 +1,143 @@
-@import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+body {
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  background: radial-gradient(60.71% 59.64% at 22.3% 0%, #0D1E1D 0%, #111111 100%);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.bg-overlay {
+  position: relative;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/background.png');
+    mix-blend-mode: soft-light;
+    opacity: 0.7;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.container {
+  display: flex;
+  justify-content: center;
 }
+
+.selector-container {
+  top: 40%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card,
+.selector {
+  width: 336px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 8px 16px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid #262626;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  gap: 12px;
+  background:  #171717;
+  overflow: hidden;
+
+}
+
+.card {
+  opacity: 0;
+  animation: fadeIn 0.3s ease-out forwards;
+  transition: background 0.3s ease;
+
+  p {
+    padding-left: 24px;
+  }
+    
+  &:hover {
+    background: #1F1F1F;
+  }
+
+  &.selected {
+    p {
+      padding-left: 0;
+    }
+  }
+}
+
+.selector {
+  justify-content: space-between;
+  background: linear-gradient(90deg, #141414 0%, #1F1F1F 100%);
+  box-shadow: 
+    0px 9px 20px 0px #000000C2,
+    0px 37px 37px 0px #000000A8,
+    0px 83px 50px 0px #00000063,
+    0px 148px 59px 0px #0000001C,
+    0px 231px 65px 0px #00000003;
+
+  .selected {
+    align-items: center;
+    gap: 12px;
+    display: flex;
+
+    p {
+      display: flex;
+      flex-direction: column;
+
+      span {
+        font-size: 11px;
+        color: #737373;
+      }
+    }
+  }
+}
+
+.arrows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  &::before,
+  &::after {
+    transition: rotate 0.3s ease;
+    content: "";
+    width: 8px;
+    height: 4px;
+    background-image: url('/images/arrow.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+  }
+
+  &::after {
+    rotate: 180deg;
+  }
+}
+
+.opened {
+  .arrows {
+    &::after {
+      rotate: 0deg;
+    }
+    &::before {
+      rotate: 180deg;
+    }
+  }
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
